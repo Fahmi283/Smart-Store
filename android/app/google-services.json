@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "909245385323",
+    "firebase_url": "https://warung-firebase-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "warung-firebase",
+    "storage_bucket": "warung-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909245385323:android:3c820aae49a5cdc216bf2e",
+        "android_client_info": {
+          "package_name": "com.example.smart_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909245385323-9q9g2pfkqubtj3evejhpm9d56alohqiq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0Utglf8oLWzC-ac02Cq5FOEOPRfurtcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909245385323-9q9g2pfkqubtj3evejhpm9d56alohqiq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909245385323:android:1b331d180213471c16bf2e",
+        "android_client_info": {
+          "package_name": "com.example.warung_ku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909245385323-9q9g2pfkqubtj3evejhpm9d56alohqiq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0Utglf8oLWzC-ac02Cq5FOEOPRfurtcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909245385323-9q9g2pfkqubtj3evejhpm9d56alohqiq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
