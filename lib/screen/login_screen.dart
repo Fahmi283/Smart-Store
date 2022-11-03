@@ -85,30 +85,32 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 20),
                 //* EMAIL TEXTFIELD
-                (activeTab == 0)
-                    ? Container(
-                        margin: const EdgeInsets.fromLTRB(30, 15, 30, 0),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 0, horizontal: 15),
-                        child: TextFormField(
-                          textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.name,
-                          controller: nameController,
-                          cursorColor: Colors.blue.shade200,
-                          decoration: InputDecoration(
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15),
-                                borderSide:
-                                    BorderSide(color: Colors.blue.shade200),
-                              ),
-                              hintText: 'Name'),
-                        ),
-                      )
-                    : const SizedBox(
-                        width: 1,
-                        height: 0,
-                      ),
+                AnimatedOpacity(
+                  duration: const Duration(milliseconds: 500),
+                  opacity: (activeTab == 0) ? 1 : 0,
+                  child: AnimatedContainer(
+                    height: (activeTab == 0) ? 60 : 0,
+                    margin: const EdgeInsets.fromLTRB(30, 15, 30, 0),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                    duration: const Duration(milliseconds: 500),
+                    child: TextFormField(
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.name,
+                      controller: nameController,
+                      cursorColor: Colors.blue.shade200,
+                      decoration: InputDecoration(
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: Colors.blue.shade200,
+                            ),
+                          ),
+                          hintText: 'Name'),
+                    ),
+                  ),
+                ),
 
                 Container(
                   margin: const EdgeInsets.fromLTRB(30, 10, 30, 10),

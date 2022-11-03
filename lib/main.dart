@@ -47,14 +47,112 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
             // primarySwatch: Colors.lightBlue,
           ),
-          routes: {
-            EntryItems.routeName: (context) => const EntryItems(),
-            LoginScreen.routeName: (context) => const LoginScreen(),
-            HomeScreen.routeName: (context) => const HomeScreen(),
-            EditSale.routeName: (context) => const EditSale(),
-            Wrapper.routeName: (context) => const Wrapper(),
+          onGenerateRoute: (settings) {
+            if (settings.name == HomeScreen.routeName) {
+              return PageRouteBuilder(
+                settings:
+                    settings, // Pass this to make popUntil(), pushNamedAndRemoveUntil(), works
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    const HomeScreen(),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  const begin = Offset(1.0, 0.0);
+                  const end = Offset.zero;
+                  final tween = Tween(begin: begin, end: end);
+                  final offsetAnimation = animation.drive(tween);
+
+                  return SlideTransition(
+                    position: offsetAnimation,
+                    child: child,
+                  );
+                },
+              );
+            } else if (settings.name == EditSale.routeName) {
+              return PageRouteBuilder(
+                settings:
+                    settings, // Pass this to make popUntil(), pushNamedAndRemoveUntil(), works
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    const EditSale(),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  const begin = Offset(1.0, 0.0);
+                  const end = Offset.zero;
+                  final tween = Tween(begin: begin, end: end);
+                  final offsetAnimation = animation.drive(tween);
+
+                  return SlideTransition(
+                    position: offsetAnimation,
+                    child: child,
+                  );
+                },
+              );
+            } else if (settings.name == EntryItems.routeName) {
+              return PageRouteBuilder(
+                settings:
+                    settings, // Pass this to make popUntil(), pushNamedAndRemoveUntil(), works
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    const EntryItems(),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  const begin = Offset(1.0, 0.0);
+                  const end = Offset.zero;
+                  final tween = Tween(begin: begin, end: end);
+                  final offsetAnimation = animation.drive(tween);
+
+                  return SlideTransition(
+                    position: offsetAnimation,
+                    child: child,
+                  );
+                },
+              );
+            } else if (settings.name == LoginScreen.routeName) {
+              return PageRouteBuilder(
+                settings:
+                    settings, // Pass this to make popUntil(), pushNamedAndRemoveUntil(), works
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    const LoginScreen(),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  const begin = Offset(1.0, 0.0);
+                  const end = Offset.zero;
+                  final tween = Tween(begin: begin, end: end);
+                  final offsetAnimation = animation.drive(tween);
+
+                  return SlideTransition(
+                    position: offsetAnimation,
+                    child: child,
+                  );
+                },
+              );
+            } else {
+              return MaterialPageRoute(builder: (_) => const Wrapper());
+              // return PageRouteBuilder(
+              //   settings:
+              //       settings, // Pass this to make popUntil(), pushNamedAndRemoveUntil(), works
+              //   pageBuilder: (context, animation, secondaryAnimation) =>
+              //       const Wrapper(),
+              //   transitionsBuilder:
+              //       (context, animation, secondaryAnimation, child) {
+              //     const begin = Offset(1.0, 1.0);
+              //     const end = Offset.zero;
+              //     final tween = Tween(begin: begin, end: end);
+              //     final offsetAnimation = animation.drive(tween);
+
+              //     return SlideTransition(
+              //       position: offsetAnimation,
+              //       child: child,
+              //     );
+              //   },
+              // );
+            }
           },
-          initialRoute: Wrapper.routeName,
+          // routes: {
+          //   EntryItems.routeName: (context) => const EntryItems(),
+          //   LoginScreen.routeName: (context) => const LoginScreen(),
+          //   HomeScreen.routeName: (context) => const HomeScreen(),
+          //   EditSale.routeName: (context) => const EditSale(),
+          //   Wrapper.routeName: (context) => const Wrapper(),
+          // },
         );
       },
     );

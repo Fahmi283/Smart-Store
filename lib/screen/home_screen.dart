@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_store/widget/table_item.dart';
 
 import '../provider/theme_provider.dart';
 import '../widget/entry_sales.dart';
 import '../widget/settings.dart';
-import '../widget/table_item.dart';
 import '../widget/table_sale.dart';
 import 'entry_data.dart';
 import 'login_screen.dart';
@@ -43,7 +43,6 @@ class _HomeScreenState extends State<HomeScreen> {
         floatingActionButton: (_currentPage == 1)
             ? FloatingActionButton(
                 backgroundColor: Colors.blue[200],
-                heroTag: 'edit-list',
                 onPressed: () async {
                   if (_currentPage == 1) {
                     Navigator.pushNamed(context, EntryItems.routeName);
@@ -59,23 +58,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: const Icon(Icons.add),
               )
             : null,
-        // bottomNavigationBar: AnimatedBottomNavigationBar(
-        //   icons: const [
-        //     Icons.home,
-        //     Icons.storage,
-        //     Icons.history,
-        //     Icons.settings,
-        //   ],
-        //   backgroundColor: Colors.blue[200],
-        //   inactiveColor: Colors.white,
-        //   activeColor: Colors.blue[900],
-        //   gapLocation: GapLocation.none,
-        //   activeIndex: _bottomNavIndex,
-        //   leftCornerRadius: 32,
-        //   rightCornerRadius: 32,
-        //   onTap: (index) => setState(() => _bottomNavIndex = index),
-        //   //other params
-        // ),
         body: PageView(
           controller: _pageController,
           children: const [
