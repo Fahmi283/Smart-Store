@@ -5,10 +5,11 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_store/widget/list_item.dart';
+import 'package:smart_store/widget/list_sale.dart';
+
 import '../provider/theme_provider.dart';
 import '../widget/entry_sales.dart';
 import '../widget/settings.dart';
-import '../widget/table_sale.dart';
 import 'entry_data.dart';
 import 'login_screen.dart';
 
@@ -62,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: const [
             EntrySales(),
             ListItems(),
-            TableSaleData(),
+            ListSale(),
             Settings(),
           ],
           onPageChanged: (index) {
