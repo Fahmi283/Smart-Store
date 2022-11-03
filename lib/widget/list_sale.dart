@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
-import 'package:smart_store/model/items_model.dart';
+import 'package:smart_store/model/sales_model.dart';
+import 'package:smart_store/provider/selling_provider.dart';
 
 import '../provider/items_provider.dart';
-import '../screen/entry_data.dart';
+import '../screen/edit_sale.dart';
 
-class ListItems extends StatefulWidget {
-  const ListItems({super.key});
+class ListSale extends StatefulWidget {
+  const ListSale({super.key});
 
   @override
-  State<ListItems> createState() => _ListItemsState();
+  State<ListSale> createState() => _ListSaleState();
 }
 
-class _ListItemsState extends State<ListItems> {
+class _ListSaleState extends State<ListSale> {
   late TextEditingController searchController;
   final currency = NumberFormat("#,##0.00", "id_ID");
 
@@ -31,9 +32,9 @@ class _ListItemsState extends State<ListItems> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ItemsProvider>(
+    return Consumer<SellingProvider>(
       builder: (context, manager, child) {
-        List<Items> value = manager.items;
+        List<Sales> value = manager.items;
         if (manager.state == ViewState.loading) {
           SmartDialog.showLoading();
         }
@@ -76,7 +77,7 @@ class _ListItemsState extends State<ListItems> {
                               )),
                           title: Text(value[index].name),
                           subtitle: Text(
-                              'Price : Rp. ${currency.format(value[index].price)}'),
+                              'Price : Rp. ${currency.format(value[index].sellingPrice)}'),
                           children: [
                             ListTile(
                               onTap: () {},
@@ -87,10 +88,8 @@ class _ListItemsState extends State<ListItems> {
                                   IconButton(
                                     onPressed: () {
                                       Navigator.pushNamed(
-                                        context,
-                                        EntryItems.routeName,
-                                        arguments: value[index],
-                                      );
+                                          context, EditSale.routeName,
+                                          arguments: value[index]);
                                     },
                                     icon: const Icon(Icons.edit),
                                   ),
@@ -114,10 +113,13 @@ class _ListItemsState extends State<ListItems> {
                                                 ),
                                                 TextButton(
                                                   onPressed: () async {
-                                                    final result =
-                                                        await manager.delete(
-                                                            value[index].id!);
+                                                    final result = await manager
+                                                        .delete(value[index]);
                                                     manager.get();
+                                                    if (mounted) {}
+                                                    Navigator.pop(context);
+                                                    showNotification(
+                                                        context, result);
                                                     if (mounted) {}
                                                     Navigator.pop(context);
                                                     showNotification(
@@ -136,8 +138,8 @@ class _ListItemsState extends State<ListItems> {
                               subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Stock : ${value[index].stock}'),
-                                  Text('Barcode : ${value[index].barcode}'),
+                                  Text('Quantity : ${value[index].sum}'),
+                                  Text('Date : ${value[index].date}'),
                                 ],
                               ),
                             ),
