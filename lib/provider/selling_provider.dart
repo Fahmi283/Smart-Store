@@ -12,7 +12,6 @@ enum DataState {
 class SellingProvider extends ChangeNotifier {
   List<Sales> _items = [];
   DataState _state = DataState.none;
-  // final ItemsServices _service = ItemsServices();
   final SellingServices _service = SellingServices();
 
   List<Sales> get items => _items;

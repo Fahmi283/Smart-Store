@@ -126,33 +126,8 @@ class MyApp extends StatelessWidget {
               );
             } else {
               return MaterialPageRoute(builder: (_) => const Wrapper());
-              // return PageRouteBuilder(
-              //   settings:
-              //       settings, // Pass this to make popUntil(), pushNamedAndRemoveUntil(), works
-              //   pageBuilder: (context, animation, secondaryAnimation) =>
-              //       const Wrapper(),
-              //   transitionsBuilder:
-              //       (context, animation, secondaryAnimation, child) {
-              //     const begin = Offset(1.0, 1.0);
-              //     const end = Offset.zero;
-              //     final tween = Tween(begin: begin, end: end);
-              //     final offsetAnimation = animation.drive(tween);
-
-              //     return SlideTransition(
-              //       position: offsetAnimation,
-              //       child: child,
-              //     );
-              //   },
-              // );
             }
           },
-          // routes: {
-          //   EntryItems.routeName: (context) => const EntryItems(),
-          //   LoginScreen.routeName: (context) => const LoginScreen(),
-          //   HomeScreen.routeName: (context) => const HomeScreen(),
-          //   EditSale.routeName: (context) => const EditSale(),
-          //   Wrapper.routeName: (context) => const Wrapper(),
-          // },
         );
       },
     );

@@ -67,161 +67,158 @@ class _EditSaleState extends State<EditSale> {
         centerTitle: true,
       ),
       body: Center(
-        child: Hero(
-          tag: 'edit-table',
-          child: SingleChildScrollView(
-            child: Form(
-              key: formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.all(16),
-                    child: Text(
-                      'Edit Data Barang',
-                      style: GoogleFonts.lato(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue.shade200),
-                    ),
+        child: SingleChildScrollView(
+          child: Form(
+            key: formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  margin: const EdgeInsets.all(16),
+                  child: Text(
+                    'Edit Data Barang',
+                    style: GoogleFonts.lato(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue.shade200),
                   ),
-                  const SizedBox(
-                    height: 20,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(30, 0, 30, 15),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                  child: TextFormField(
+                    enabled: false,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.name,
+                    controller: nameController,
+                    cursorColor: Colors.blue.shade200,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Field tidak boleh kosong';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                        filled: true,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: Colors.blue.shade200),
+                        ),
+                        hintText: 'Item Name'),
                   ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(30, 0, 30, 15),
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
-                    child: TextFormField(
-                      enabled: false,
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.name,
-                      controller: nameController,
-                      cursorColor: Colors.blue.shade200,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Field tidak boleh kosong';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(color: Colors.blue.shade200),
-                          ),
-                          hintText: 'Item Name'),
-                    ),
+                ),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(30, 0, 30, 15),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                  child: TextFormField(
+                    enabled: false,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.none,
+                    controller: barcodeController,
+                    cursorColor: Colors.blue.shade200,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Field tidak boleh kosong';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                        filled: true,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: Colors.blue.shade200),
+                        ),
+                        hintText: 'Barcode'),
                   ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(30, 0, 30, 15),
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
-                    child: TextFormField(
-                      enabled: false,
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.none,
-                      controller: barcodeController,
-                      cursorColor: Colors.blue.shade200,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Field tidak boleh kosong';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(color: Colors.blue.shade200),
-                          ),
-                          hintText: 'Barcode'),
-                    ),
+                ),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(30, 0, 30, 15),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                  child: TextFormField(
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.number,
+                    controller: sellingPriceController,
+                    cursorColor: Colors.blue.shade200,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Field tidak boleh kosong';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                        filled: true,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: Colors.blue.shade200),
+                        ),
+                        hintText: 'Selling price'),
                   ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(30, 0, 30, 15),
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
-                    child: TextFormField(
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.number,
-                      controller: sellingPriceController,
-                      cursorColor: Colors.blue.shade200,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Field tidak boleh kosong';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(color: Colors.blue.shade200),
-                          ),
-                          hintText: 'Selling price'),
-                    ),
+                ),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(30, 0, 30, 15),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                  child: TextFormField(
+                    textInputAction: TextInputAction.done,
+                    keyboardType: TextInputType.number,
+                    controller: stockController,
+                    cursorColor: Colors.blue.shade200,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Field tidak boleh kosong';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                        filled: true,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: Colors.blue.shade200),
+                        ),
+                        hintText: 'Jmmlah'),
                   ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(30, 0, 30, 15),
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
-                    child: TextFormField(
-                      textInputAction: TextInputAction.done,
-                      keyboardType: TextInputType.number,
-                      controller: stockController,
-                      cursorColor: Colors.blue.shade200,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Field tidak boleh kosong';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(color: Colors.blue.shade200),
-                          ),
-                          hintText: 'Jmmlah'),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 50),
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                        onPressed: () async {
-                          if (formKey.currentState!.validate()) {
-                            SmartDialog.showLoading();
-                            final helper = Provider.of<SellingProvider>(context,
-                                listen: false);
-                            Sales data = Sales(
-                              uId: args.uId,
-                              id: args.id,
-                              name: args.name,
-                              sellingPrice:
-                                  int.parse(sellingPriceController.text),
-                              barcode: args.barcode,
-                              sum: int.parse(stockController.text),
-                              date: args.date,
-                            );
-                            final result = await helper.edit(data);
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 50),
+                  width: double.infinity,
+                  height: 50,
+                  child: ElevatedButton(
+                      onPressed: () async {
+                        if (formKey.currentState!.validate()) {
+                          SmartDialog.showLoading();
+                          final helper = Provider.of<SellingProvider>(context,
+                              listen: false);
+                          Sales data = Sales(
+                            uId: args.uId,
+                            id: args.id,
+                            name: args.name,
+                            sellingPrice:
+                                int.parse(sellingPriceController.text),
+                            barcode: args.barcode,
+                            sum: int.parse(stockController.text),
+                            date: args.date,
+                          );
+                          final result = await helper.edit(data);
 
-                            if (mounted) {}
-                            showNotification(context, result);
-                            SmartDialog.dismiss();
-                            helper.get();
-                            Navigator.pop(context);
-                          }
-                        },
-                        child: const Text('Edit Item')),
-                  )
-                ],
-              ),
+                          if (mounted) {}
+                          showNotification(context, result);
+                          SmartDialog.dismiss();
+                          helper.get();
+                          Navigator.pop(context);
+                        }
+                      },
+                      child: const Text('Edit Item')),
+                )
+              ],
             ),
           ),
         ),
