@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_store/provider/items_provider.dart';
 
 import '../model/sales_model.dart';
 import '../provider/selling_provider.dart';
@@ -47,6 +48,7 @@ class _EditSaleState extends State<EditSale> {
 
   @override
   Widget build(BuildContext context) {
+    var ref = context.read<ItemsProvider>();
     final args = ModalRoute.of(context)!.settings.arguments as Sales;
 
     nameController.text = args.name;
@@ -208,11 +210,22 @@ class _EditSaleState extends State<EditSale> {
                             date: args.date,
                           );
                           final result = await helper.edit(data);
+                          var selisih =
+                              args.sum - int.parse(stockController.text);
+
+                          var dataIndex = ref.items.indexWhere(
+                              (element) => element.barcode == args.barcode);
+                          if (dataIndex != -1) {
+                            var sum = ref.items[dataIndex].stock + selisih;
+                            await ref.updateStock(ref.items[dataIndex], sum);
+                            ref.get();
+                          }
 
                           if (mounted) {}
                           showNotification(context, result);
                           SmartDialog.dismiss();
                           helper.get();
+                          ref.get();
                           Navigator.pop(context);
                         }
                       },
