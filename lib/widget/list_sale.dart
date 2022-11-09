@@ -21,7 +21,8 @@ class _ListSaleState extends State<ListSale> {
 
   void showNotification(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: Colors.blue, content: Text(message.toString())));
+        backgroundColor: Colors.blue.shade200,
+        content: Text(message.toString())));
   }
 
   var searchResult = [];
@@ -33,6 +34,7 @@ class _ListSaleState extends State<ListSale> {
 
   @override
   Widget build(BuildContext context) {
+    var ref = context.watch<ItemsProvider>();
     return Consumer<SellingProvider>(
       builder: (context, manager, child) {
         List<Sales> value = manager.items;
@@ -142,16 +144,32 @@ class _ListSaleState extends State<ListSale> {
                                                       ),
                                                       TextButton(
                                                         onPressed: () async {
+                                                          var dataIndex = ref
+                                                              .items
+                                                              .indexWhere((element) =>
+                                                                  element
+                                                                      .barcode ==
+                                                                  value[index]
+                                                                      .barcode);
+                                                          if (dataIndex != -1) {
+                                                            var sum = ref
+                                                                    .items[
+                                                                        dataIndex]
+                                                                    .stock +
+                                                                value[index]
+                                                                    .sum;
+                                                            await ref.updateStock(
+                                                                ref.items[
+                                                                    dataIndex],
+                                                                sum);
+                                                            ref.get();
+                                                          }
                                                           final result =
                                                               await manager
                                                                   .delete(value[
                                                                       index]);
                                                           manager.get();
-                                                          if (mounted) {}
-                                                          Navigator.pop(
-                                                              context);
-                                                          showNotification(
-                                                              context, result);
+
                                                           if (mounted) {}
                                                           Navigator.pop(
                                                               context);
@@ -173,7 +191,9 @@ class _ListSaleState extends State<ListSale> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text('Quantity : ${value[index].sum}'),
+                                        Text('Qty : ${value[index].sum}'),
+                                        Text(
+                                            'Total : Rp.${currency.format(value[index].sum * value[index].sellingPrice)}'),
                                         Text('Date : ${value[index].date}'),
                                       ],
                                     ),

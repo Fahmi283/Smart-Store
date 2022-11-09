@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../model/sales_model.dart';
+import '../provider/items_provider.dart';
 import '../provider/selling_provider.dart';
 
 class EditSale extends StatefulWidget {
@@ -48,7 +49,7 @@ class _EditSaleState extends State<EditSale> {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as Sales;
-
+    var ref = context.watch<ItemsProvider>();
     nameController.text = args.name;
     sellingPriceController.text = args.sellingPrice.toString();
     barcodeController.text = args.barcode.toString();
@@ -207,6 +208,15 @@ class _EditSaleState extends State<EditSale> {
                             sum: int.parse(stockController.text),
                             date: args.date,
                           );
+                          var dataIndex = ref.items.indexWhere(
+                              (element) => element.barcode == args.barcode);
+                          if (dataIndex != -1) {
+                            var selisih =
+                                args.sum - int.parse(stockController.text);
+                            var sum = ref.items[dataIndex].stock + selisih;
+                            await ref.updateStock(ref.items[dataIndex], sum);
+                            ref.get();
+                          }
                           final result = await helper.edit(data);
 
                           if (mounted) {}
