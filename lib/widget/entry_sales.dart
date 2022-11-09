@@ -28,6 +28,8 @@ class _EntrySalesState extends State<EntrySales> {
   late TextEditingController textEditingController;
 
   String? selectedValue;
+  var total = 0;
+  final currency = NumberFormat("#,##0.00", "id_ID");
 
   void showNotification(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -249,6 +251,19 @@ class _EntrySalesState extends State<EntrySales> {
                           }
                           return null;
                         },
+                        onChanged: (value) {
+                          if (value.isNotEmpty &&
+                              sumController.text.isNotEmpty) {
+                            setState(() {
+                              total = int.parse(value) *
+                                  int.parse(sumController.text);
+                            });
+                          } else {
+                            setState(() {
+                              total = 0;
+                            });
+                          }
+                        },
                         decoration: InputDecoration(
                             filled: true,
                             border: OutlineInputBorder(
@@ -274,6 +289,19 @@ class _EntrySalesState extends State<EntrySales> {
                           }
                           return null;
                         },
+                        onChanged: (value) {
+                          if (value.isNotEmpty &&
+                              priceController.text.isNotEmpty) {
+                            setState(() {
+                              total = int.parse(value) *
+                                  int.parse(priceController.text);
+                            });
+                          } else {
+                            setState(() {
+                              total = 0;
+                            });
+                          }
+                        },
                         decoration: InputDecoration(
                             filled: true,
                             border: OutlineInputBorder(
@@ -283,6 +311,12 @@ class _EntrySalesState extends State<EntrySales> {
                             ),
                             hintText: 'jumlah'),
                       ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(5),
+                      child: Text((total == 0)
+                          ? ''
+                          : 'Total Rp.${currency.format(total)}'),
                     ),
                     const SizedBox(
                       height: 30,
